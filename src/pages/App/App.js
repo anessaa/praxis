@@ -20,7 +20,6 @@ class App extends Component {
    }
   }
    
- 
   // Callback Methods
   handleLogout = () => {
     userService.logout();
@@ -41,11 +40,12 @@ class App extends Component {
     this.setState({user});
 
     fetch('api/lessons')
-    .then((data) => data.json())
-      .then((data) => {
-        this.setState({lessons:data})
-      } )
+      .then((data) => data.json())
+        .then((data) => {
+          this.setState({lessons:data})
+        })    
   }
+
 
   render() {
     return (

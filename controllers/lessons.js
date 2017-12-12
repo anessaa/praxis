@@ -1,8 +1,10 @@
-var Lesson = require('./../models/lessons');
+var Lesson = require('../models/lesson');
 
 function index(req, res) {
-  Lesson.find({}).then((lessons) => 
-    res.json(lessons));
+  Lesson.find({}).then((lessons) => {
+    console.log("lessons", lessons);
+    res.json(lessons)
+  })
 }
 
 

@@ -19,7 +19,8 @@ app.use(bodyParser.json());
 app.use(require('./config/auth'));
 
 app.use('/api/users', require('./routes/api/users'));
-
+app.use('/api/lessons', require('./routes/api/lessons'));
+app.use('/api/practicePosts', require('./routes/api/practicePosts'));
 
 app.get('/*', function(req, res) {
 res.sendFile(path.join(__dirname, 'build', 'index.html'));

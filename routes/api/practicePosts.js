@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var Lesson = require('../../models/lesson');
-var lessonsCtrl = require('../../controllers/lessons');
+var practicePostCtrl = require('../../controllers/practicePosts');
 
-router.get('/', lessonsCtrl.index);
+router.post('/new', practicePostCtrl.create);
+
 
 module.exports = router;

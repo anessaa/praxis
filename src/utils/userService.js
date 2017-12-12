@@ -11,8 +11,8 @@ function getUser() {
   return tokenService.getUserFromToken();
 }
 
-function login(creds) {
-  return userAPI.login(creds)
+function login(user) {
+  return userAPI.login(user)
     .then(token => tokenService.setToken(token));    
 }
 

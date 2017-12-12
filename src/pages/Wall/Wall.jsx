@@ -2,7 +2,7 @@ import React from 'react';
 import './Wall.css';
 import NavBar from '../../components/NavBar/NavBar';
 import Lesson from '../../components/Lesson/Lesson';
-
+import PracticePost from '../../components/PracticePost/PracticePost';
 
 const Wall = (props) => {
 
@@ -11,16 +11,11 @@ const Wall = (props) => {
       <NavBar 
         user={props.user}
       />
-     <h1>User Wall</h1>
-     <Lesson  
-    
-      {...props}
-     />
-
+     <h1>Wall</h1>
+     <PracticePost {...props}/>
+     <Lesson {...props}/>
     </div>
-
-  )
+  );
 }
-
 
 export default Wall;
