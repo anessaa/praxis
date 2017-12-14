@@ -51,23 +51,42 @@ function edit(req,res) {
   })
 }
 
-
 function createComment(req, res) {
-  PracticePost.findById(req.params.id, (err, practicePost) => {
-    if (err) {
-      return res.status(404).json(err);
-    }
-    const newComment = {
-      remark: req.body.remark,
-      author: req.user._id
-    }
+  console.log('createComment hit')
+  PracticePost.findById(req.params.id)
+    .then((practicePost) => {
+   
+      const newComment = {
+        remark: req.body.remark,
+        author: req.user._id
+      }
     practicePost.comments.push(newComment)
     practicePost.save((err, savedPracticePost) => {
       if (err) {
         return res.status(500).json(err);
       }
-      res.json(savedPracticePost)
     })
+  })
+  .then(() => {
+    PracticePost
+      .findById(req.params.id)
+      .populate({
+        path: 'author',
+      })
+      .populate({
+        path: 'comments.author',
+        populate: {
+          path: 'author'
+        }
+      }).then((practicePosts) => {
+        console.log('These are all the practice posts', practicePosts)
+        res.json(practicePosts);
+      });
+  })
+  .catch(err => {
+    if (err) {
+      return res.status(404).json(err);
+    }
   });
 }
     

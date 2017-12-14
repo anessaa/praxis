@@ -8,7 +8,7 @@ class PracticeCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      practicePost: props.practicePost,
+      practicePost: this.props.practicePost,
       remark: '',
       author: ''
       // updateContent: `<input type=text value="HELLOOOOOO">`
@@ -32,12 +32,12 @@ class PracticeCard extends Component {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer ' + tokenService.getToken()
         },
-        body: JSON.stringify({remark: this.state.remark, author: this.state.author})
+        body: JSON.stringify({remark: this.state.remark})
       })
       .then(res => res.json())
       .then((practicePost) => {
         this.setState({practicePost: practicePost, remark: ''})
-        this.props.handleAddPost(practicePost);
+        // this.props.handleAddPost(practicePost);
         this.props.history.push('/feed');
       })
       .catch(err => console.log('error'));

@@ -46,6 +46,7 @@ class App extends Component {
       .then((data) => {
         this.setState({scales:data})
       })   
+      
     fetch('api/practicePosts')
       .then((data) => data.json())
       .then((data) => {
