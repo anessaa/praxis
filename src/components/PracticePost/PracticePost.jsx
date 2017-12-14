@@ -39,10 +39,10 @@ class PracticePost extends Component {
     return (
       <div>
         <h3>Post Practice Session</h3>
-          <div class="row">
-          <form class="col s12" onSubmit={this.handleSubmit}>
-            <div class="row">
-              <div class="input-field col s12">
+          <div className="row">
+          <form className="col s12" onSubmit={this.handleSubmit}>
+            <div className="row">
+              <div className="input-field col s12">
                 <input type="text" placeholder="Duration" value={this.state.duration} onChange={(e) => this.handleChange('duration', e)} />
                 <textarea placeholder="Practice Session" value={this.state.content} id="textarea1" className="materialize-textarea" onChange={(e) => this.handleChange('content', e)} ></textarea>
                 <button>Post Practice Session</button>

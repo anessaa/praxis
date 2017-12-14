@@ -2,10 +2,10 @@
 import React from 'react';
 
 const Comments = (props) => {
+  console.log('props =', props)
   return (
     <div>
-      {props.comment.remark}
-
+      {props.comment.remark} - {props.comment.author.name}
       {/* <p>{this.props.practicePost.comments.map(remark remarks[0]}</p> */}
       {/* {this.props.practicePost ? this.props.practicePost.comments.map(remark => <p>{this.props.practicePost.remark}</p>) : <h1>Loading</h1>} */}
 
