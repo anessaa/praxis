@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 app.use(require('./config/auth'));
 
 app.use('/api/users', require('./routes/api/users'));
-app.use('/api/lessons', require('./routes/api/lessons'));
+app.use('/api/scales', require('./routes/api/scales'));
 app.use('/api/practicePosts', require('./routes/api/practicePosts'));
 
 app.get('/*', function(req, res) {

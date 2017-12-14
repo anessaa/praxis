@@ -15,6 +15,7 @@ const NavBar = (props) => {
       </div>
 
       <ul className="right hide-on-med-and-down">
+        <li><Link to="/scales">scale encyclopedia</Link></li>
         <li><Link to="/wall">user wall</Link></li>
         <li><Link to="/feed">praxis feed</Link></li>
       </ul>

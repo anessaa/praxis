@@ -1,11 +1,10 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var lessonSchema = new Schema({
-  name: String,
+var scaleSchema = new Schema({
   scale: String,
   diagram: String,
   steps: [String]
 })
 
-module.exports = mongoose.model('Lesson', lessonSchema);
+module.exports = mongoose.model('Scale', scaleSchema);

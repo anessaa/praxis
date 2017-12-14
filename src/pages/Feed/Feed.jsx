@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import './Feed.css';
-import NavBar from '../../components/NavBar/NavBar';
 import tokenService from '../../utils/tokenService';
 import PracticeCard from '../../components/PracticeCard/PracticeCard';
 
@@ -36,7 +35,6 @@ class Feed extends Component {
     return (
       <div>
         <h1>Feed</h1>
-        {console.log(this.props)}
         {this.props.practicePosts ?
           this.props.practicePosts.map((practicePost, idx) => 
           <PracticeCard key={idx} practicePost={practicePost} />

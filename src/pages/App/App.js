@@ -11,12 +11,13 @@ import userService from '../../utils/userService';
 import NavBar from '../../components/NavBar/NavBar';
 import Wall from '../../pages/Wall/Wall';
 import Feed from '../../pages/Feed/Feed';
+import ScalesPage from '../../pages/ScalesPage/ScalesPage';
 
 class App extends Component {
  constructor(props) {
    super(props);
    this.state = {
-    lessons: null,
+    scales: null,
     practicePosts: null
    }
   }
@@ -40,10 +41,10 @@ class App extends Component {
     let user = userService.getUser();
     this.setState({user});
 
-    fetch('api/lessons')
-      .then(res => res.json())
+    fetch('api/scales')
+      .then((data) => data.json())
       .then((data) => {
-        this.setState({lessons:data})
+        this.setState({scales:data})
       })   
     fetch('api/practicePosts')
       .then((data) => data.json())
@@ -95,20 +96,22 @@ class App extends Component {
                   <Wall
                     {...props}
                     user={this.state.user}
-                    lessons={this.state.lessons}
                     handleAddPost={this.handleAddPost}
                     practicePosts={this.state.practicePosts}
                   />
                 } />
 
-              <Route exact path='/feed' render={(props) =>
-                <Feed 
-                  {...props}
-                  user={this.state.user}
-                  practicePosts={this.state.practicePosts}
-                  
-                />
-              } />
+                <Route exact path='/feed' render={(props) =>
+                  <Feed 
+                    {...props}
+                    user={this.state.user}
+                    practicePosts={this.state.practicePosts}
+                  />
+                } />
+                <Route exact path='/scales' render={(props) => 
+                  <ScalesPage {...props} scales={this.state.scales} />  
+                } />
+
             </Switch>
           </div>
         </Router>

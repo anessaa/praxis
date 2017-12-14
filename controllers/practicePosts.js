@@ -1,15 +1,6 @@
 var PracticePost = require('./../models/practicePost');
 var User = require("./../models/user");
 
-
-// User.
-//   findOne({ name: 'Val' }).
-//   populate({
-//     path: 'friends',
-//     // Get friends of friends - populate the 'friends' array for every friend
-//     populate: { path: 'friends' }
-//   });
-
 function index(req, res) {
   PracticePost
     .find({})
@@ -22,9 +13,6 @@ function index(req, res) {
         path: 'author'
       }
     }).then((practicePosts) => {
-      console.log('practicePosts =', practicePosts, '\n')
-      console.log('practicePosts.comments =', practicePosts.map(post=> post.comments) )
-      console.log('asdfasdf', practicePosts[0].comments[0])
       res.json(practicePosts);
     });
 }
@@ -54,6 +42,7 @@ function deletePost(req, res) {
 }
 
 function edit(req,res) {
+  console.log('editing in db')
   PracticePost.findOneAndUpdate(req.params.id, req.body, {new:true}, (err, practicePost) => {
     if (err) {
       res.status(500).send(err);
