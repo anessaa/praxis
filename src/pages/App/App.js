@@ -16,7 +16,8 @@ class App extends Component {
  constructor(props) {
    super(props);
    this.state = {
-    lessons: null
+    lessons: null,
+    practicePosts: null
    }
   }
    
@@ -40,53 +41,76 @@ class App extends Component {
     this.setState({user});
 
     fetch('api/lessons')
+      .then(res => res.json())
+      .then((data) => {
+        this.setState({lessons:data})
+      })   
+    fetch('api/practicePosts')
       .then((data) => data.json())
-        .then((data) => {
-          this.setState({lessons:data})
-        })    
+      .then((data) => {
+        this.setState({practicePosts:data})
+      });
   }
 
+  handleAddPost = () => {
+    fetch('api/practicePosts')
+    .then((data) => data.json())
+    .then((data) => {
+      this.setState({practicePosts:data})
+    }); 
+  }
 
+  handlePostUpdate = (updatedPost) => {
+    var posts = [...this.state.practicePosts];
+    var idx = posts.findIndex(p => p._id === updatedPost._id);
+    posts.splice(idx, 1, updatedPost);
+    this.setState({practicePosts: posts});
+  }
+
+  
   render() {
     return (
       <div className="container">
-
             <Router>
-              <Switch>     
-              <Route exact path='/' render={() => 
+              <div>
                 <NavBar 
-                user={this.state.user}
-                handleLogout={this.handleLogout}
+                  user={this.state.user}
+                  handleLogout={this.handleLogout}
                 /> 
-              }/>
-            <Route exact path='/signup' render={(match) =>
-              <SignupPage 
-                {...match}
-                user={this.state.user}
-                handleSignup={this.handleSignup}
-              />
-            } />
-            <Route exact path='/login' render={(props) =>
-              <LoginPage 
-                {...props}
-                handleLogin={this.handleLogin}
-              />
-            } />
-             <Route exact path='/wall' render={(props) =>
-              <Wall
-                {...props}
-                user={this.state.user}
-                lessons={this.state.lessons}
-              />
-            } />
+              <Switch>
+                <Route exact path='/signup' render={(match) =>
+                  <SignupPage 
+                    {...match}
+                    user={this.state.user}
+                    handleSignup={this.handleSignup}
+                />
+                } />
+                <Route exact path='/login' render={(props) =>
+                <LoginPage 
+                  {...props}
+                  handleLogin={this.handleLogin}
+                />
+                } />
+                <Route exact path='/wall' render={(props) =>
+                  <Wall
+                    {...props}
+                    user={this.state.user}
+                    lessons={this.state.lessons}
+                    handleAddPost={this.handleAddPost}
+                    practicePosts={this.state.practicePosts}
+                  />
+                } />
 
-            <Route exact path='/feed' render={() =>
-              <Feed 
-                user={this.state.user}
-    
-              />
-            } />
-          </Switch>
+              <Route exact path='/feed' render={(props) =>
+                <Feed 
+                  {...props}
+                  user={this.state.user}
+                  practicePosts={this.state.practicePosts}
+                  
+                />
+              } />
+            </Switch>
+          </div>
         </Router>
       </div>
     );

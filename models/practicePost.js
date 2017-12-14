@@ -3,13 +3,13 @@ var Schema = mongoose.Schema;
 
 var commentSchema = new Schema({
   remark: String,
-  user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+  author: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 }, {
   timestamps: true
 })
 
 var practicePostSchema = new Schema({
-  user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+  author: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
   content: String,
   duration: Number,
   comments : [commentSchema]

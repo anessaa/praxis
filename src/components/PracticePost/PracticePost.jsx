@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import tokenService from '../../utils/tokenService';
 
 class PracticePost extends Component {
   constructor(props) {
@@ -13,8 +14,8 @@ class PracticePost extends Component {
     this.setState({
       [field]: e.target.value
     });
-
   }
+  
   handleSubmit = (e) => {
     e.preventDefault();
     fetch("api/practicePosts/new",
@@ -22,12 +23,14 @@ class PracticePost extends Component {
         method: "POST",
         headers: {
           'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + tokenService.getToken()
         },
         body: JSON.stringify({content: this.state.content, duration:this.state.duration, id: this.props.user.id })
       })
       .then(() => {
-        this.props.history.push('/');
+        this.props.handleAddPost();
+        this.props.history.push('/feed');
       })
       .catch(err => console.log('error'));
   }
