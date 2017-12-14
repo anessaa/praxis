@@ -23,5 +23,5 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "proxy": "https://peaceful-lake-37891.herokuapp.com/"
+  "proxy": "http://localhost:3001"
 }
