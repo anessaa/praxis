@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import './Wall.css';
 import PracticePost from '../../components/PracticePost/PracticePost';
 import PracticeCard from '../../components/PracticeCard/PracticeCard';
 class Wall extends Component {
