@@ -34,7 +34,7 @@ class Feed extends Component {
   render() {
     return (
       <div>
-        <h1>Feed</h1>
+        <h2 className="Feed-post-header">Feed</h2>
         {this.props.practicePosts ?
           this.props.practicePosts.map((practicePost, idx) => 
           <PracticeCard key={idx} practicePost={practicePost} />

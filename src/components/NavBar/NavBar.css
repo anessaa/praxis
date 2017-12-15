@@ -1,18 +1,14 @@
 
 nav {
-  background-color: black;
+  background-color: #db8f78;
   height: 100px;
   padding: 20px;
   color: white;
 }
 
-/* .NavBar-title {
-  display: inline-block;
-  text-align: left;
+
+nav .brand-logo{
+  font-size: 3.1em;
 }
 
-.NavBar-links {
-  display: inline;
-  text-align: center;
-} */
- 
+

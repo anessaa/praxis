@@ -81,11 +81,7 @@ class App extends Component {
                 /> 
               <Switch>
                 <Route exact path='/' render={(props) => 
-                  <Feed 
-                    {...props}
-                    user={this.state.user}
-                    practicePosts={this.state.practicePosts}
-                  />
+                  <img src="https://i.imgur.com/kiBcW8h.jpg" />
               } />
                 <Route exact path='/signup' render={(match) =>
                   <SignupPage 
@@ -109,13 +105,13 @@ class App extends Component {
                   />
                 } />
 
-                {/* <Route exact path='/feed' render={(props) =>
+                <Route exact path='/feed' render={(props) =>
                   <Feed 
                     {...props}
                     user={this.state.user}
                     practicePosts={this.state.practicePosts}
                   />
-                } /> */}
+                } />
                 <Route exact path='/scales' render={(props) => 
                   <ScalesPage {...props} scales={this.state.scales} />  
                 } />

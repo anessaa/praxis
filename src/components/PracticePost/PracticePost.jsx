@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import tokenService from '../../utils/tokenService';
+import './PracticePost.css';
 
 class PracticePost extends Component {
   constructor(props) {
@@ -30,7 +31,9 @@ class PracticePost extends Component {
       })
       .then(() => {
         this.props.handleAddPost();
-        this.props.history.push('/feed');
+        this.setState({content: ''})
+
+        this.props.history.push('/wall');
       })
       .catch(err => console.log('error'));
   }
@@ -38,17 +41,19 @@ class PracticePost extends Component {
   render() {
     return (
       <div>
-        <h3>Post Practice Session</h3>
+        <div className="PracticePost-form">
+        <h3 className="PracticePost-header">Post Your Practice Session</h3>
           <div className="row">
           <form className="col s12" onSubmit={this.handleSubmit}>
             <div className="row">
               <div className="input-field col s12">
+                <textarea placeholder="What did you practice today?" value={this.state.content} id="textarea1" className="materialize-textarea" onChange={(e) => this.handleChange('content', e)} ></textarea>
                 <input type="text" placeholder="Duration" value={this.state.duration} onChange={(e) => this.handleChange('duration', e)} />
-                <textarea placeholder="Practice Session" value={this.state.content} id="textarea1" className="materialize-textarea" onChange={(e) => this.handleChange('content', e)} ></textarea>
-                <button>Post Practice Session</button>
+                <button className="btn">Post Practice Session</button>
               </div>
             </div>
           </form>
+          </div>
           </div>
       </div>
     )

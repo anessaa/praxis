@@ -13,7 +13,7 @@ class ScalesPage extends Component {
     return (
       <div>
         <div>
-          <h1>Scales Encycolpedia</h1>
+          <h1>Scale Library</h1>
             {this.props.scales ?
               this.props.scales.map((scale, idx) => 
                 <ScaleCard key={idx} scale={scale} />

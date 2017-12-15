@@ -13,9 +13,7 @@ class Wall extends Component {
   render() {
     return (
       <div>
-       <h1>Wall</h1>
        <PracticePost {...this.props}/>
-        <h4><u>your practice sessions</u></h4>
           {this.props.practicePosts ?
             this.props.practicePosts
             .filter(p => p.author._id === this.props.user._id)
