@@ -19,7 +19,6 @@ class SignupForm extends Component {
       [field]: e.target.value
     });
   }
-
   handleSubmit = (e) => {
     e.preventDefault();
     userService.signup(this.state)

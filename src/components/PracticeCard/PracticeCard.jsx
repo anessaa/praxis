@@ -19,7 +19,6 @@ class PracticeCard extends Component {
       [field]: e.target.value
     });
   }
-
   handleSubmit(e) {
     e.preventDefault();
 
@@ -57,10 +56,10 @@ class PracticeCard extends Component {
             <div>
               <h5>Comments</h5>
                 {this.state.practicePost ?
-                this.state.practicePost.comments.map((comment, idx) => 
-                  <Comments key={idx} comment={comment} />
-                  )
-                :
+                  this.state.practicePost.comments.map((comment, idx) => 
+                    <Comments key={idx} comment={comment} />
+                    )
+                  :
                   <h6>Loading...</h6>
                 } 
             </div> 
@@ -68,6 +67,5 @@ class PracticeCard extends Component {
     );
   }
 }
-
 
 export default PracticeCard;

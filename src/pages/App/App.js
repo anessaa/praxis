@@ -3,6 +3,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
+  Redirect
 } from 'react-router-dom';
 import './App.css';
 import SignupPage from '../SignupPage/SignupPage';
@@ -21,17 +22,15 @@ class App extends Component {
     practicePosts: null
    }
   }
-   
+
   // Callback Methods
   handleLogout = () => {
     userService.logout();
     this.setState({user: null});
   }
-
   handleSignup = () => {
     this.setState({user: userService.getUser()});
   }
-
   handleLogin = () => { 
     this.setState({user: userService.getUser()});
   }
@@ -69,7 +68,6 @@ class App extends Component {
     this.setState({practicePosts: posts});
   }
 
-  
   render() {
     return (
       <div className="container">
@@ -97,25 +95,33 @@ class App extends Component {
                 />
                 } />
                 <Route exact path='/wall' render={(props) =>
-                  <Wall
-                    {...props}
-                    user={this.state.user}
-                    handleAddPost={this.handleAddPost}
-                    practicePosts={this.state.practicePosts}
-                  />
+                  userService.getUser() ?
+                    <Wall
+                      {...props}
+                      user={this.state.user}
+                      handleAddPost={this.handleAddPost}
+                      practicePosts={this.state.practicePosts}
+                    />
+                    :
+                    <Redirect to='/login' />
                 } />
 
                 <Route exact path='/feed' render={(props) =>
-                  <Feed 
-                    {...props}
-                    user={this.state.user}
-                    practicePosts={this.state.practicePosts}
-                  />
-                } />
-                <Route exact path='/scales' render={(props) => 
-                  <ScalesPage {...props} scales={this.state.scales} />  
-                } />
-
+                  userService.getUser() ?
+                    <Feed 
+                      {...props}
+                      user={this.state.user}
+                      practicePosts={this.state.practicePosts}
+                    />
+                    :
+                    <Redirect to='/login' />
+                  } />
+                  <Route exact path='/scales' render={(props) => 
+                    userService.getUser() ?
+                      <ScalesPage {...props} scales={this.state.scales} />  
+                    :
+                      <Redirect />
+                  } />
             </Switch>
           </div>
         </Router>

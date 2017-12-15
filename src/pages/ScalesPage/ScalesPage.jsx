@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import './ScalesPage.css';
 import ScaleCard from '../../components/ScaleCard/ScaleCard';
 
 class ScalesPage extends Component {
